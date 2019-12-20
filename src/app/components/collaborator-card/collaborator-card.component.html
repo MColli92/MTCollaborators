@@ -1,0 +1,12 @@
+<div class="card animated fadeIn fast">
+    <img class="card-img-top img-fluid" src="assets/img/{{ collaborator.img }}" [alt]="collaborator.Nombres">
+    <div class="card-body">
+        <h4 class="card-title">{{ collaborator.Nombres }} {{ collaborator.Apellidos }} ({{ collaborator.Puesto }})</h4>
+        <p class="card-text">Departamento: {{ collaborator.Departamento }}</p>
+        <p class="card-text"><small class="text-muted"> Ingreso: {{ collaborator.FechaIngreso }}</small></p>
+
+        <button (click)="viewCollaborator()" type="button" class="btn btn-outline-primary btn-block">
+              Ver mas...
+        </button>
+    </div>
+</div>

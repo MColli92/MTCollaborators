@@ -1,0 +1,37 @@
+<h1 class="animated fadeIn">{{ collaborator.Nombres | uppercase }} {{ collaborator.Apellidos | uppercase }}
+    <small>({{ collaborator.Puesto }})</small>
+</h1>
+<hr>
+
+<div class="row animated fadeIn fast">
+
+    <div class="col-md-3">
+
+        <img *ngIf="collaborator.img !== undefined" src="assets/img/{{ collaborator.img }}" class="img-fluid" [alt]="collaborator.Nombres + collaborator.Apellidos">
+        <br><br>
+        <a [routerLink]="['/edit', collaborator.id]" [hidden]="collaborator.FechaEgreso !== ''" class="btn btn-outline-primary btn-block">Editar</a>
+        <br>
+        <a [routerLink]="['/collaborators']" class="btn btn-outline-danger btn-block">Regresar</a>
+
+    </div>
+
+    <div class="col-md-8">
+        <p>DNI: {{ collaborator.DNI }}</p>
+        <p>CUIL: {{ collaborator.CUIL }}</p>
+        <p>Fecha de Nacimiento: {{ collaborator.FechaNacimiento }}</p>
+        <p *ngIf="Edad !== undefined">Edad: {{ Edad }}</p>
+        <p>Nacionalidad: {{ collaborator.Nacionalidad }}</p>
+        <p>Domicilio: {{ collaborator.Domicilio }}</p>
+        <p>Ciudad: {{ collaborator.Ciudad }}</p>
+        <p>Departamento: {{ collaborator.Departamento }}</p>
+        <p>Puesto: {{ collaborator.Puesto }}</p>
+        <p>Estado Civil: {{ collaborator.EstadoCivil }}</p>
+        <p>Fecha de Ingreso: {{ collaborator.FechaIngreso }}</p>
+        <p *ngIf="Antiguedad !== undefined">Antiguedad: {{ Antiguedad }}</p>
+        <p>Estudios Secundarios: {{ collaborator.EstudiosSecundarios }}</p>
+        <div *ngIf="collaborator.FechaEgreso !== ''">
+            <strong>Fecha de Egreso: {{ collaborator.FechaEgreso }}</strong>
+        </div>
+    </div>
+
+</div>

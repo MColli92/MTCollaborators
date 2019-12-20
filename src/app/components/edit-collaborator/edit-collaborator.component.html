@@ -1,0 +1,203 @@
+<h4>Información del colaborador </h4>
+<hr>
+<form [formGroup]="formGroup" (ngSubmit)="saveChanges(formGroup)">
+
+    <!-- <div class="form-group row">
+        <div class="col-md-3">
+            <span>Foto Perfil:</span>
+            <div appNgDropFile (mouseOver)="isOverDropElement = $event" [ngClass]="{'file-over': isOverDropElement}" class="well drop-zone">
+                <img src="assets/img/drop-images.png" alt="">
+            </div>
+        </div>
+    </div> -->
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Nombres</label>
+        <div class="col-4">
+            <input class="form-control" [ngClass]="{'border-danger': showError && formGroup.get('Nombres').invalid && showError}" type="text" formControlName="Nombres">
+            <div *ngIf="formGroup.get('Nombres').invalid && showError" class="form-control-feedback mt-0">
+                <small>Campo requerido sin números</small>
+            </div>
+        </div>
+        <label class="col-2 col-form-label">Apellidos</label>
+        <div class="col-4">
+            <input class="form-control" [ngClass]="{'border-danger': showError && formGroup.get('Apellidos').invalid}" type="text" formControlName="Apellidos">
+            <div *ngIf="formGroup.get('Apellidos').invalid && showError" class="form-control-feedback mt-0">
+                <small>Campo requerido sin números</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">DNI</label>
+        <div class="col-4">
+            <input class="form-control" [ngClass]="{'border-danger': showError && formGroup.get('DNI').invalid}" type="text" formControlName="DNI">
+            <div *ngIf="formGroup.get('DNI').invalid && showError" class="form-control-feedback mt-0">
+                <small>8 dígitos sin puntos</small>
+            </div>
+        </div>
+        <label class="col-2 col-form-label">CUIL</label>
+        <div class="col-4">
+            <input class="form-control" [ngClass]="{'border-danger': showError && formGroup.get('CUIL').invalid && showError}" type="text" formControlName="CUIL">
+            <div *ngIf="formGroup.get('CUIL').invalid && showError" class="form-control-feedback mt-0">
+                <small>11 dígitos sin guiones</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Fecha de nacimiento</label>
+        <div class="col-4">
+            <input class="form-control" [ngClass]="{'border-danger': showError && formGroup.get('FechaNacimiento').invalid}" type="text" formControlName="FechaNacimiento">
+            <div *ngIf="formGroup.get('FechaNacimiento').invalid && showError" class="form-control-feedback mt-0">
+                <small>Formato de fecha MM/dd/yyyy</small>
+            </div>
+        </div>
+        <label for="selectNacionalidad" class="col-2 col-form-label">Nacionalidad</label>
+        <div class="col-4">
+            <select class="form-control" id="selectNacionalidad" placeholder="Seleccionar" [ngClass]="{'border-danger': showError && formGroup.get('Nacionalidad').invalid}" formControlName="Nacionalidad">
+                    <option disabled selected value="">Selecciona una opción</option>
+                    <option *ngFor="let n of nacionalities" [ngValue]="n">{{ n }}</option>
+            </select>
+            <div *ngIf="formGroup.get('Nacionalidad').invalid && showError" class="form-control-feedback mt-0">
+                <small>Campo requerido</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Domicilio</label>
+        <div class="col-md-4">
+            <input class="form-control" [ngClass]="{'border-danger': showError && formGroup.get('Domicilio').invalid}" type="text" formControlName="Domicilio">
+            <div *ngIf="formGroup.get('Domicilio').invalid && showError" class="form-control-feedback mt-0">
+                <small>Campo requerido</small>
+            </div>
+        </div>
+        <label for="selectCiudad" class="col-2 col-form-label">Ciudad</label>
+        <div class="col-md-4">
+            <select class="form-control" id="selectCiudad" [ngClass]="{'border-danger': showError && formGroup.get('Ciudad').invalid}" formControlName="Ciudad">
+                <option disabled selected value="">Selecciona una opción</option>
+                <option *ngFor="let c of cities" [ngValue]="c">{{ c }}</option>
+            </select>
+            <div *ngIf="formGroup.get('Ciudad').invalid && showError" class="form-control-feedback mt-0">
+                <small>Campo requerido</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="selectDepartamento" class="col-2 col-form-label">Departamento</label>
+        <div class="col-md-4">
+            <select class="form-control" id="selectDepartamento" [ngClass]="{'border-danger': showError && formGroup.get('Departamento').invalid}" formControlName="Departamento">
+                <option disabled selected value="">Selecciona una opción</option>
+                <option *ngFor="let d of departures" [ngValue]="d">{{ d }}</option>
+            </select>
+            <div *ngIf="formGroup.get('Departamento').invalid && showError" class="form-control-feedback mt-0">
+                <small>Campo requerido</small>
+            </div>
+        </div>
+        <label for="selectPuesto" class="col-2 col-form-label">Puesto</label>
+        <div class="col-md-4">
+            <select class="form-control" id="selectPuesto" [ngClass]="{'border-danger': showError && formGroup.get('Puesto').invalid}" formControlName="Puesto">
+                <option disabled selected value="">Selecciona una opción</option>
+                <option *ngFor="let lc of laborCharges" [ngValue]="lc">{{ lc }}</option>
+            </select>
+            <div *ngIf="formGroup.get('Puesto').invalid && showError" class="form-control-feedback mt-0">
+                <small>Campo requerido</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="selectEstadoCivil" class="col-2 col-form-label">Estado Civil</label>
+        <div class="col-md-4">
+            <select class="form-control" id="selectEstadoCivil" [ngClass]="{'border-danger': showError && formGroup.get('EstadoCivil').invalid}" formControlName="EstadoCivil">
+                <option disabled selected value="">Selecciona una opción</option>
+                <option *ngFor="let cs of civilStates" [ngValue]="cs">{{ cs }}</option>
+            </select>
+            <div *ngIf="formGroup.get('EstadoCivil').invalid && showError" class="form-control-feedback mt-0">
+                <small>Campo requerido</small>
+            </div>
+        </div>
+        <label for="selectEstudiosSecundarios" class="col-2 col-form-label">Estudios alcanzados</label>
+        <div class="col-md-4">
+            <!-- <input class="form-control" [ngClass]="{'border-danger': showError && formGroup.get('EstudiosSecundarios').invalid}" type="text" formControlName="EstudiosSecundarios"> -->
+            <select class="form-control" id="selectEstudiosSecundarios" [ngClass]="{'border-danger': showError && formGroup.get('EstudiosSecundarios').invalid}" formControlName="EstudiosSecundarios">
+                <option disabled selected value="">Selecciona una opción</option>
+                <option *ngFor="let s of studies" [ngValue]="s">{{ s }}</option>
+            </select>
+        </div>
+        <div *ngIf="formGroup.get('EstudiosSecundarios').invalid && showError" class="form-control-feedback mt-0">
+            <small>Campo requerido</small>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Fecha de ingreso</label>
+        <div class="col-4">
+            <input class="form-control" [ngClass]="{'border-danger': showError && formGroup.get('FechaIngreso').invalid}" type="text" formControlName="FechaIngreso">
+            <div *ngIf="formGroup.get('FechaIngreso').invalid && showError" class="form-control-feedback mt-0">
+                <small>Formato de fecha MM/dd/yyyy</small>
+            </div>
+        </div>
+        <label class="col-2 col-form-label">Fecha de Egreso</label>
+        <div class="col-4">
+            <input class="form-control" type="text" placeholder="Actualidad" formControlName="FechaEgreso">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="input-group">
+            <button type="submit" class="btn btn-outline-primary ml-3">
+                Guardar
+            </button>
+            <button *ngIf="idParameter !== 'nuevo'" (click)="LoadModal('first')" type="button" class="btn btn-outline-info ml-2" data-toggle="modal" data-target="#modal" data-whatever="@mdo">
+                Evaluaciones desempeño
+            </button>
+            <button (click)="back()" type="button" class="btn btn-outline-danger float-right ml-2">
+                Regresar
+            </button>
+            <button *ngIf="dataChanged" (click)="discard()" type="button" class="btn btn-outline-secondary ml-2">
+                Descartar
+            </button>
+        </div>
+    </div>
+
+</form>
+
+<!-- Modal evaluaciones de desempeño -->
+<div class="modal fade" id="modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Desempeño de {{ collaborator.Nombres}} {{ collaborator.Apellidos }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formModal" (ngSubmit)="SaveEval(formModal)">
+                    <div class="form-group">
+                        <label for="Ano" class="col-form-label">Año:</label>
+                        <select (change)="LoadModal($event.target.value)" class="form-control" id="Ano" formControlName="Ano">
+                            <option *ngFor="let a of anos" [ngValue]="a">{{ a }}</option>
+                        </select>
+                        <label for="Comunicacion" class="col-form-label">Comunicación:</label>
+                        <input type="text" class="form-control" id="Comunicacion" formControlName="Comunicacion">
+                        <label for="Comunicacion" class="col-form-label"></label>
+                        <label for="TrabajoEnEquipo" class="col-form-label">Trabajo en equipo:</label>
+                        <input type="text" class="form-control" id="TrabajoEnEquipo" formControlName="TrabajoEnEquipo">
+                        <label for="Liderazgo" class="col-form-label">Liderazgo:</label>
+                        <input type="text" class="form-control" id="Liderazgo" formControlName="Liderazgo">
+                        <label for="Autonomia" class="col-form-label">Autonomía:</label>
+                        <input type="text" class="form-control" id="Autonomia" formControlName="Autonomia">
+                    </div>
+                    <div class="form-group row">
+                        <button type="button" class="btn btn-secondary ml-3" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary ml-2">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

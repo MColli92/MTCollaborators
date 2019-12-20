@@ -1,0 +1,16 @@
+<h1>Buscando: <small>{{ input }}</small></h1>
+<hr>
+
+<div class="row animated fadeIn fast" *ngIf="collaborators.length == 0">
+    <div class="col-md-12">
+        <div class="alert alert-info" role="alert">
+            No existen resultados para: {{ input }}
+        </div>
+    </div>
+
+</div>
+
+<div class="card-columns">
+    <app-collaborator-card [collaborator]="c" [id]="c.id" *ngFor="let c of collaborators">
+    </app-collaborator-card>
+</div>
