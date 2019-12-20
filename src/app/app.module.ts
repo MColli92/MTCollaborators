@@ -26,9 +26,6 @@ import { GraphicsComponent } from './components/graphics/graphics.component';
 // Pipes
 import { AddPercentPipe } from './pipes/addPercent.pipe';
 
-// Directives
-//import { NgDropFileDirective } from './directives/ng-drop-file.directive';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +38,6 @@ import { AddPercentPipe } from './pipes/addPercent.pipe';
     EditCollaboratorComponent,
     GraphicsComponent,
     AddPercentPipe
-    //NgDropFileDirective,
   ],
   imports: [
     BrowserModule,
