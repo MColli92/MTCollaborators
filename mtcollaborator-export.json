@@ -1,0 +1,72 @@
+{
+  "collaborators" : {
+    "-Lud0ItmywH-uArVnx6h" : {
+      "Apellidos" : "Argento",
+      "CUIL" : "20305421526",
+      "Ciudad" : "BsAs",
+      "DNI" : "30542152",
+      "Departamento" : "Sistemas",
+      "Domicilio" : "Calle Falsa 123",
+      "EstadoCivil" : "Casado",
+      "EstudiosSecundarios" : "Si",
+	  "FechaEgreso" : "",
+      "FechaIngreso" : "01/01/2016",
+      "FechaNacimiento" : "02/14/1955",
+      "Nacionalidad" : "Argentino",
+      "Nombres" : "Pepe",
+      "Puesto" : "Gerente",
+      "img" : "30542152.jpg"
+    },
+    "-Lud0K__DgmZdxlxiwpb" : {
+      "Apellidos" : "Argento",
+      "CUIL" : "22352652653",
+      "Ciudad" : "BsAs",
+      "DNI" : "35265265",
+      "Departamento" : "Sistemas",
+      "Domicilio" : "Calle Falsa 123",
+      "EstadoCivil" : "Soltero",
+      "EstudiosSecundarios" : "Si",
+	  "FechaEgreso" : "",
+      "FechaIngreso" : "01/03/2018",
+      "FechaNacimiento" : "05/18/1987",
+      "Nacionalidad" : "Argentina",
+      "Nombres" : "Paola",
+      "Puesto" : "QA",
+      "img" : "35265265.jpg"
+    },
+    "-Lud0MGfJH1PzzXEjB0K" : {
+      "Apellidos" : "Argento",
+      "CUIL" : "21322589637",
+      "Ciudad" : "BsAs",
+      "DNI" : "32258963",
+      "Departamento" : "Sistemas",
+      "Domicilio" : "Calle Falsa 123",
+      "EstadoCivil" : "Casado",
+      "EstudiosSecundarios" : "Si",
+	  "FechaEgreso" : "",
+      "FechaIngreso" : "01/02/2017",
+      "FechaNacimiento" : "11/07/1974",
+      "Nacionalidad" : "Argentina",
+      "Nombres" : "Moni",
+      "Puesto" : "QA",
+      "img" : "32258963.jpg"
+    },
+    "-Lud0O5XQq6UC95h6jSu" : {
+      "Apellidos" : "Argento",
+      "CUIL" : "24369897451",
+      "Ciudad" : "BsAs",
+      "DNI" : "36989745",
+      "Departamento" : "Sistemas",
+      "Domicilio" : "Calle Falsa 123",
+      "EstadoCivil" : "Soltero",
+      "EstudiosSecundarios" : "Si",
+	  "FechaEgreso" : "",
+      "FechaIngreso" : "01/04/2019",
+      "FechaNacimiento" : "01/29/1981",
+      "Nacionalidad" : "Argentino",
+      "Nombres" : "Coqui",
+      "Puesto" : "Developer",
+      "img" : "36989745.jpg"
+    }
+  }
+}
