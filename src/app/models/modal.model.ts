@@ -4,4 +4,6 @@ export class ModalModel {
     TrabajoEnEquipo: string;
     Liderazgo: string;
     Autonomia: string;
+    idCollaborator: string;
+    id?: string;
   }

@@ -30,6 +30,5 @@ export class CollaboratorsComponent implements OnInit {
         this.collaborators = response;
         Swal.close();
       });
-  }
-
+    }
 }

@@ -26,6 +26,7 @@ export class EditCollaboratorComponent implements OnInit {
   civilStates: any;
   cities: any;
   studies: any;
+  evaluations: ModalModel[] = [];
   collaborator: CollaboratorModel = new CollaboratorModel();
   anos: string[] = [];
   modalModel: ModalModel = new ModalModel();
@@ -46,21 +47,17 @@ constructor(private activatedRoute: ActivatedRoute,
 
   this.formModal = new FormGroup({
   Ano: new FormControl('', [ Validators.required] ),
-  Comunicacion: new FormControl('', [ Validators.required,
-                                      Validators.maxLength(2),
-                                      Validators.minLength(2),
-                                      Validators.pattern('^[0-9]*')] ),
-  TrabajoEnEquipo: new FormControl('', [ Validators.required,
-                                         Validators.maxLength(2),
-                                         Validators.minLength(2),
-                                         Validators.pattern('^[0-9]*')] ),
-  Liderazgo: new FormControl('', [ Validators.required, Validators.maxLength(2), Validators.minLength(2), Validators.pattern('^[0-9]*')] ),
-  Autonomia: new FormControl('', [ Validators.required, Validators.maxLength(2), Validators.minLength(2), Validators.pattern('^[0-9]*')] )
+  Comunicacion: new FormControl('', [ Validators.required, Validators.pattern(/^[1-9][0-9]?$|^100$/)]),
+  TrabajoEnEquipo: new FormControl('', [ Validators.required, Validators.pattern(/^[1-9][0-9]?$|^100$/)]),
+  Liderazgo: new FormControl('', [ Validators.required, Validators.pattern(/^[1-9][0-9]?$|^100$/)]),
+  Autonomia: new FormControl('', [ Validators.required, Validators.pattern(/^[1-9][0-9]?$|^100$/)]),
+  idCollaborator: new FormControl(''),
+  id: new FormControl()
   });
 
   this.formGroup = new FormGroup({
-    Apellidos: new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-Z]*') ] ),
-    Nombres: new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-Z]*') ] ),
+    Apellidos: new FormControl('', [ Validators.required, Validators.pattern('^[a-z A-Z]*') ] ),
+    Nombres: new FormControl('', [ Validators.required, Validators.pattern('^[a-z A-Z]*') ] ),
     DNI: new FormControl('', [ Validators.required, Validators.maxLength(8), Validators.minLength(8), Validators.pattern('^[0-9]*')] ),
     CUIL: new FormControl('', [ Validators.required, Validators.maxLength(11), Validators.minLength(11), Validators.pattern('^[0-9]*')] ),
     FechaNacimiento: new FormControl('', [ Validators.required,
@@ -103,6 +100,10 @@ constructor(private activatedRoute: ActivatedRoute,
 
   this.collaboratorsService.getStudies().subscribe( response => {
     this.studies = response;
+  });
+
+  this.modalService.getEvaluations().subscribe( (response: ModalModel[]) => {
+    this.evaluations = response;
   });
 
   this.valueChanges();
@@ -158,26 +159,36 @@ constructor(private activatedRoute: ActivatedRoute,
     });
     Swal.showLoading();
 
-    this.modalModel.Ano = this.formGroup.get('Ano').value.toString();
-    this.modalModel.Autonomia = this.formGroup.get('Autonomia').value.toString();
-    this.modalModel.Comunicacion = this.formGroup.get('Comunicacion').value.toString();
-    this.modalModel.Liderazgo = this.formGroup.get('Liderazgo').value.toString();
-    this.modalModel.TrabajoEnEquipo = this.formGroup.get('TrabajoEnEquipo').value.toString();
+    this.collaborator.Apellidos = this.formGroup.get('Apellidos').value.toString();
+    this.collaborator.Nombres = this.formGroup.get('Nombres').value.toString();
+    this.collaborator.DNI = this.formGroup.get('DNI').value.toString();
+    this.collaborator.CUIL = this.formGroup.get('CUIL').value.toString();
+    this.collaborator.FechaNacimiento = this.formGroup.get('FechaNacimiento').value.toString();
+    this.collaborator.Nacionalidad = this.formGroup.get('Nacionalidad').value.toString();
+    this.collaborator.Domicilio = this.formGroup.get('Domicilio').value.toString();
+    this.collaborator.Ciudad = this.formGroup.get('Ciudad').value.toString();
+    this.collaborator.Departamento = this.formGroup.get('Departamento').value.toString();
+    this.collaborator.Puesto = this.formGroup.get('Puesto').value.toString();
+    this.collaborator.EstadoCivil = this.formGroup.get('EstadoCivil').value.toString();
+    this.collaborator.FechaIngreso = this.formGroup.get('FechaIngreso').value.toString();
+    this.collaborator.FechaEgreso = this.formGroup.get('FechaEgreso').value.toString();
+    this.collaborator.EstudiosSecundarios = this.formGroup.get('EstudiosSecundarios').value.toString();
+    this.collaborator.img = this.formGroup.get('DNI').value.toString() + '.jpg';
 
-    // let petition: Observable<any>;
+    let petition: Observable<any>;
 
-    // // if ( this.collaborator.id ) { petition = this.collaboratorsService.updateCollaborator(this.collaborator);
-    // // } else { petition = this.collaboratorsService.createCollaborator(this.collaborator); }
+    if ( this.collaborator.id ) { petition = this.collaboratorsService.updateCollaborator(this.collaborator);
+    } else { petition = this.collaboratorsService.createCollaborator(this.collaborator); }
 
-    // petition.subscribe( response => {
-    //   Swal.fire({
-    //     title: this.collaborator.Apellidos + ' ' + this.collaborator.Nombres,
-    //     text: 'Se actualizó correctamente.',
-    //     icon: 'success',
-    //   }).then( x => {
-    //     this.router.navigate( ['/collaborators'] );
-    //   });
-    // });
+    petition.subscribe( response => {
+      Swal.fire({
+        title: this.collaborator.Apellidos + ' ' + this.collaborator.Nombres,
+        text: 'Se actualizó correctamente.',
+        icon: 'success',
+      }).then( x => {
+        this.router.navigate( ['/collaborators'] );
+      });
+    });
   }
 
    discard() {
@@ -239,26 +250,17 @@ constructor(private activatedRoute: ActivatedRoute,
     });
     Swal.showLoading();
 
-    this.collaborator.Apellidos = this.formGroup.get('Apellidos').value.toString();
-    this.collaborator.Nombres = this.formGroup.get('Nombres').value.toString();
-    this.collaborator.DNI = this.formGroup.get('DNI').value.toString();
-    this.collaborator.CUIL = this.formGroup.get('CUIL').value.toString();
-    this.collaborator.FechaNacimiento = this.formGroup.get('FechaNacimiento').value.toString();
-    this.collaborator.Nacionalidad = this.formGroup.get('Nacionalidad').value.toString();
-    this.collaborator.Domicilio = this.formGroup.get('Domicilio').value.toString();
-    this.collaborator.Ciudad = this.formGroup.get('Ciudad').value.toString();
-    this.collaborator.Departamento = this.formGroup.get('Departamento').value.toString();
-    this.collaborator.Puesto = this.formGroup.get('Puesto').value.toString();
-    this.collaborator.EstadoCivil = this.formGroup.get('EstadoCivil').value.toString();
-    this.collaborator.FechaIngreso = this.formGroup.get('FechaIngreso').value.toString();
-    this.collaborator.FechaEgreso = this.formGroup.get('FechaEgreso').value.toString();
-    this.collaborator.EstudiosSecundarios = this.formGroup.get('EstudiosSecundarios').value.toString();
-    this.collaborator.img = this.formGroup.get('DNI').value.toString() + '.jpg';
+    this.modalModel.Ano = this.formModal.get('Ano').value.toString();
+    this.modalModel.Autonomia = this.formModal.get('Autonomia').value.toString();
+    this.modalModel.Comunicacion = this.formModal.get('Comunicacion').value.toString();
+    this.modalModel.Liderazgo = this.formModal.get('Liderazgo').value.toString();
+    this.modalModel.TrabajoEnEquipo = this.formModal.get('TrabajoEnEquipo').value.toString();
+    this.modalModel.idCollaborator = this.collaborator.id;
 
     let petition: Observable<any>;
 
-    if ( this.collaborator.id ) { petition = this.collaboratorsService.updateCollaborator(this.collaborator);
-    } else { petition = this.collaboratorsService.createCollaborator(this.collaborator); }
+    if ( this.modalModel.id !== '' ) { petition = this.modalService.updateEvaluation(this.modalModel);
+    } else { petition = this.modalService.createEvaluation(this.modalModel); }
 
     petition.subscribe( response => {
       Swal.fire({
@@ -266,7 +268,11 @@ constructor(private activatedRoute: ActivatedRoute,
         text: 'Se actualizó correctamente.',
         icon: 'success',
       }).then( x => {
-        this.router.navigate( ['/collaborators'] );
+          document.getElementById('closeModal').click();
+          this.router.navigate( ['/edit', this.collaborator.id] );
+          this.modalService.getEvaluations().subscribe( (r: ModalModel[]) => {
+            this.evaluations = r;
+          });
       });
     });
   }
@@ -277,20 +283,28 @@ constructor(private activatedRoute: ActivatedRoute,
     } else {
       date = date.substr(3);
     }
-    this.modalService.getPerformanceEvaluationById(this.collaborator.id).subscribe( (response: any) => {
-      if (response !== null && response !== undefined && response[date] !== undefined) {
-        this.modalModel = response[date];
-        this.modalModel.Ano = date;
-        this.formModal.setValue(this.modalModel);
-      } else {
-        this.modalModel.Ano = date;
-        this.modalModel.Comunicacion = '';
-        this.modalModel.TrabajoEnEquipo = '';
-        this.modalModel.Liderazgo = '';
-        this.modalModel.Autonomia = '';
-        this.formModal.setValue(this.modalModel);
-      }
-    });
+
+    const evaluation = this.evaluations.find(x => x.Ano === date && x.idCollaborator === this.collaborator.id);
+
+    if (evaluation !== undefined) {
+      this.modalModel.Ano = evaluation.Ano;
+      this.modalModel.Comunicacion = evaluation.Comunicacion;
+      this.modalModel.TrabajoEnEquipo = evaluation.TrabajoEnEquipo;
+      this.modalModel.Liderazgo = evaluation.Liderazgo;
+      this.modalModel.Autonomia = evaluation.Autonomia;
+      this.modalModel.idCollaborator = evaluation.idCollaborator;
+      this.modalModel.id = evaluation.id;
+      this.formModal.setValue(this.modalModel);
+    } else {
+      this.modalModel.Ano = date;
+      this.modalModel.Comunicacion = '';
+      this.modalModel.TrabajoEnEquipo = '';
+      this.modalModel.Liderazgo = '';
+      this.modalModel.Autonomia = '';
+      this.modalModel.idCollaborator = this.collaborator.id;
+      this.modalModel.id = '';
+      this.formModal.setValue(this.modalModel);
+    }
   }
 
 }

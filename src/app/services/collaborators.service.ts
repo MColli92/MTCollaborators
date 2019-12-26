@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { CollaboratorModel } from '../models/collaborator.model';
-import { ModalModel } from '../models/modal.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment.prod';
@@ -79,19 +78,6 @@ export class CollaboratorsService {
     }
     return collaboratorsArr;
   }
-
-  // updateEvaluation( modalModel: ModalModel ) {
-
-  //   window['value'];
-
-  //   const collaboratorTemp = {
-
-  //   };
-
-  //   delete modalModel.id;
-
-  //   return this.http.put( `${ environment.url }/collaborators/${ collaborator.id }.json`,  collaboratorTemp);
-  // }
 
   getLaborCharges() {
     return this.http.get( `${ environment.url }/laborCharges.json`);
