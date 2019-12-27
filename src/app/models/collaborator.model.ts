@@ -6,6 +6,7 @@ export class CollaboratorModel {
     FechaNacimiento: string;
     Nacionalidad: string;
     Domicilio: string;
+    Localidad: string;
     Ciudad: string;
     Departamento: string;
     Puesto: string;

@@ -63,8 +63,9 @@ constructor(private activatedRoute: ActivatedRoute,
     FechaNacimiento: new FormControl('', [ Validators.required,
                                             Validators.pattern(/^(((0)[1-9])|((1)[0-2]))(\/)(((0)[1-9])|[1-2][0-9]|(3)[0-1])(\/)\d{4}$/)
                                           ] ),
-    Nacionalidad: new FormControl('', [ Validators.required ] ),
+    Nacionalidad: new FormControl('Argentina', [ Validators.required ] ),
     Domicilio: new FormControl('', [ Validators.required ] ),
+    Localidad: new FormControl('', [ Validators.required ] ),
     Ciudad: new FormControl('', [ Validators.required ] ),
     Departamento: new FormControl('', [ Validators.required ] ),
     Puesto: new FormControl('', [ Validators.required ] ),
@@ -80,22 +81,27 @@ constructor(private activatedRoute: ActivatedRoute,
 
   this.collaboratorsService.getLaborCharges().subscribe( response => {
     this.laborCharges = response;
+    this.laborCharges.sort();
   });
 
   this.collaboratorsService.getCivilStates().subscribe( response => {
     this.civilStates = response;
+    this.civilStates.sort();
   });
 
   this.collaboratorsService.getDepartures().subscribe( response => {
     this.departures = response;
+    this.departures.sort();
   });
 
   this.collaboratorsService.getNacionalities().subscribe( response => {
     this.nacionalities = response;
+    this.nacionalities.sort();
   });
 
   this.collaboratorsService.getCities().subscribe( response => {
     this.cities = response;
+    this.cities.sort();
   });
 
   this.collaboratorsService.getStudies().subscribe( response => {
@@ -166,6 +172,7 @@ constructor(private activatedRoute: ActivatedRoute,
     this.collaborator.FechaNacimiento = this.formGroup.get('FechaNacimiento').value.toString();
     this.collaborator.Nacionalidad = this.formGroup.get('Nacionalidad').value.toString();
     this.collaborator.Domicilio = this.formGroup.get('Domicilio').value.toString();
+    this.collaborator.Localidad = this.formGroup.get('Localidad').value.toString();
     this.collaborator.Ciudad = this.formGroup.get('Ciudad').value.toString();
     this.collaborator.Departamento = this.formGroup.get('Departamento').value.toString();
     this.collaborator.Puesto = this.formGroup.get('Puesto').value.toString();
@@ -200,8 +207,9 @@ constructor(private activatedRoute: ActivatedRoute,
       this.formGroup.controls['DNI'].setValue('');
       this.formGroup.controls['CUIL'].setValue('');
       this.formGroup.controls['FechaNacimiento'].setValue('');
-      this.formGroup.controls['Nacionalidad'].setValue('');
+      this.formGroup.controls['Nacionalidad'].setValue('Argentina');
       this.formGroup.controls['Domicilio'].setValue('');
+      this.formGroup.controls['Localidad'].setValue('');
       this.formGroup.controls['Ciudad'].setValue('');
       this.formGroup.controls['Departamento'].setValue('');
       this.formGroup.controls['Puesto'].setValue('');

@@ -2,15 +2,6 @@
 <hr>
 <form [formGroup]="formGroup" (ngSubmit)="saveChanges(formGroup)">
 
-    <!-- <div class="form-group row">
-        <div class="col-md-3">
-            <span>Foto Perfil:</span>
-            <div appNgDropFile (mouseOver)="isOverDropElement = $event" [ngClass]="{'file-over': isOverDropElement}" class="well drop-zone">
-                <img src="assets/img/drop-images.png" alt="">
-            </div>
-        </div>
-    </div> -->
-
     <div class="form-group row">
         <label class="col-2 col-form-label">Nombres</label>
         <div class="col-4">
@@ -55,7 +46,7 @@
         </div>
         <label for="selectNacionalidad" class="col-2 col-form-label">Nacionalidad</label>
         <div class="col-4">
-            <select class="form-control" id="selectNacionalidad" placeholder="Seleccionar" [ngClass]="{'border-danger': showError && formGroup.get('Nacionalidad').invalid}" formControlName="Nacionalidad">
+            <select class="form-control" id="selectNacionalidad" placeholder="Seleccionar" disabled [ngClass]="{'border-danger': showError && formGroup.get('Nacionalidad').invalid}" formControlName="Nacionalidad">
                     <option disabled selected value="">Selecciona una opción</option>
                     <option *ngFor="let n of nacionalities" [ngValue]="n">{{ n }}</option>
             </select>
@@ -86,23 +77,10 @@
     </div>
 
     <div class="form-group row">
-        <label for="selectDepartamento" class="col-2 col-form-label">Departamento</label>
+        <label class="col-2 col-form-label">Localidad</label>
         <div class="col-md-4">
-            <select class="form-control" id="selectDepartamento" [ngClass]="{'border-danger': showError && formGroup.get('Departamento').invalid}" formControlName="Departamento">
-                <option disabled selected value="">Selecciona una opción</option>
-                <option *ngFor="let d of departures" [ngValue]="d">{{ d }}</option>
-            </select>
-            <div *ngIf="formGroup.get('Departamento').invalid && showError" class="form-control-feedback mt-0">
-                <small>Campo requerido</small>
-            </div>
-        </div>
-        <label for="selectPuesto" class="col-2 col-form-label">Puesto</label>
-        <div class="col-md-4">
-            <select class="form-control" id="selectPuesto" [ngClass]="{'border-danger': showError && formGroup.get('Puesto').invalid}" formControlName="Puesto">
-                <option disabled selected value="">Selecciona una opción</option>
-                <option *ngFor="let lc of laborCharges" [ngValue]="lc">{{ lc }}</option>
-            </select>
-            <div *ngIf="formGroup.get('Puesto').invalid && showError" class="form-control-feedback mt-0">
+            <input class="form-control" [ngClass]="{'border-danger': showError && formGroup.get('Localidad').invalid}" type="text" formControlName="Localidad">
+            <div *ngIf="formGroup.get('Localidad').invalid && showError" class="form-control-feedback mt-0">
                 <small>Campo requerido</small>
             </div>
         </div>
@@ -131,6 +109,29 @@
             <small>Campo requerido</small>
         </div>
 
+    </div>
+
+    <div class="form-group row">
+        <label for="selectDepartamento" class="col-2 col-form-label">Departamento</label>
+        <div class="col-md-4">
+            <select class="form-control" id="selectDepartamento" [ngClass]="{'border-danger': showError && formGroup.get('Departamento').invalid}" formControlName="Departamento">
+                <option disabled selected value="">Selecciona una opción</option>
+                <option *ngFor="let d of departures" [ngValue]="d">{{ d }}</option>
+            </select>
+            <div *ngIf="formGroup.get('Departamento').invalid && showError" class="form-control-feedback mt-0">
+                <small>Campo requerido</small>
+            </div>
+        </div>
+        <label for="selectPuesto" class="col-2 col-form-label">Puesto</label>
+        <div class="col-md-4">
+            <select class="form-control" id="selectPuesto" [ngClass]="{'border-danger': showError && formGroup.get('Puesto').invalid}" formControlName="Puesto">
+                <option disabled selected value="">Selecciona una opción</option>
+                <option *ngFor="let lc of laborCharges" [ngValue]="lc">{{ lc }}</option>
+            </select>
+            <div *ngIf="formGroup.get('Puesto').invalid && showError" class="form-control-feedback mt-0">
+                <small>Campo requerido</small>
+            </div>
+        </div>
     </div>
 
     <div class="form-group row">

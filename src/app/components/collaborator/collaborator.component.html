@@ -7,7 +7,7 @@
 
     <div class="col-md-3">
 
-        <img *ngIf="collaborator.img !== undefined" src="assets/img/{{ collaborator.img }}" class="img-fluid" [alt]="collaborator.Nombres + collaborator.Apellidos">
+        <img *ngIf="collaborator.img !== undefined" src="assets/img/{{ collaborator.img }}" class="img-fluid embed-responsive-item img-card" [alt]="collaborator.Nombres + collaborator.Apellidos">
         <br><br>
         <a [routerLink]="['/edit', collaborator.id]" [hidden]="collaborator.FechaEgreso !== ''" class="btn btn-outline-primary btn-block">Editar</a>
         <br>
@@ -24,6 +24,7 @@
         <p *ngIf="Edad !== undefined">Edad: {{ Edad }}</p>
         <p>Nacionalidad: {{ collaborator.Nacionalidad }}</p>
         <p>Domicilio: {{ collaborator.Domicilio }}</p>
+        <p>Localidad: {{ collaborator.Localidad }}</p>
         <p>Ciudad: {{ collaborator.Ciudad }}</p>
         <p>Departamento: {{ collaborator.Departamento }}</p>
         <p>Puesto: {{ collaborator.Puesto }}</p>
