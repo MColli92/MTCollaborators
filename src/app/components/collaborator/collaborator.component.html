@@ -11,6 +11,8 @@
         <br><br>
         <a [routerLink]="['/edit', collaborator.id]" [hidden]="collaborator.FechaEgreso !== ''" class="btn btn-outline-primary btn-block">Editar</a>
         <br>
+        <a [routerLink]="['/graphics', collaborator.id]" [hidden]="collaborator.FechaEgreso !== ''" class="btn btn-outline-info btn-block">Performance</a>
+        <br>
         <a [routerLink]="['/collaborators']" class="btn btn-outline-danger btn-block">Regresar</a>
 
     </div>

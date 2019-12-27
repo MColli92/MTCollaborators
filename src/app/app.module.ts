@@ -23,9 +23,6 @@ import { CollaboratorCardComponent } from './components/collaborator-card/collab
 import { EditCollaboratorComponent } from './components/edit-collaborator/edit-collaborator.component';
 import { GraphicsComponent } from './components/graphics/graphics.component';
 
-// Pipes
-import { AddPercentPipe } from './pipes/addPercent.pipe';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,8 +33,7 @@ import { AddPercentPipe } from './pipes/addPercent.pipe';
     NavbarComponent,
     CollaboratorCardComponent,
     EditCollaboratorComponent,
-    GraphicsComponent,
-    AddPercentPipe
+    GraphicsComponent
   ],
   imports: [
     BrowserModule,

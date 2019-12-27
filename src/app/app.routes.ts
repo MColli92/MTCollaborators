@@ -13,7 +13,7 @@ const APP_ROUTES: Routes = [
   { path: 'collaborator/:id', component: CollaboratorComponent},
   { path: 'search/:input', component: SearchComponent },
   { path: 'edit/:id', component: EditCollaboratorComponent },
-  { path: 'graphics', component: GraphicsComponent },
+  { path: 'graphics/:id', component: GraphicsComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];
 

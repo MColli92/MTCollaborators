@@ -232,8 +232,8 @@ constructor(private activatedRoute: ActivatedRoute,
 
     if ( form.invalid ) {
       Swal.fire({
-        title: 'Error intentando guardar la información.',
-        text: 'Verificar que los datos ingresados sean válidos.',
+        title: 'Error en el formulario.',
+        text: 'Verificar que los datos ingresados esten entre 1 y 100.',
         icon: 'error',
       }).then( x => {
         this.showError = true;
@@ -265,7 +265,7 @@ constructor(private activatedRoute: ActivatedRoute,
     petition.subscribe( response => {
       Swal.fire({
         title: this.collaborator.Apellidos + ' ' + this.collaborator.Nombres,
-        text: 'Se actualizó correctamente.',
+        text: 'Se actualizó correctamente la evaluación del año: ' + this.modalModel.Ano,
         icon: 'success',
       }).then( x => {
           document.getElementById('closeModal').click();

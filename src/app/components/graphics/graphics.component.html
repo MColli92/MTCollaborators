@@ -1,23 +1,30 @@
 <div>
-    <h1>Graficos y Estadísticas</h1>
+    <h3>{{ collaborator }}</h3>
     <hr>
 
-    <!-- <div>
-        <div>
-            <div style="display: block">
-                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType">
-            </canvas>
+    <div class="row animated fadeIn fast" *ngIf="radarChartData.length == 0">
+        <div class="col-md-12">
+            <div class="alert alert-info" role="alert">
+                No tiene evaluaciones de desempeño cargadas.
             </div>
-            <button class="btn btn-primary" mat-button mat-raised-button color="primary" (click)="randomize()">Actualizar</button>
         </div>
-    </div> -->
 
-    <div>
+    </div>
+
+    <div *ngIf="radarChartData.length > 0">
         <div>
             <div style="display: block">
                 <canvas baseChart [datasets]="radarChartData" [options]="radarChartOptions" [labels]="radarChartLabels" [chartType]="radarChartType">
             </canvas>
             </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="btn-group">
+            <button (click)="back()" type="button" class="btn btn-outline-danger float-right ml-2">
+                Regresar
+            </button>
         </div>
     </div>
 
