@@ -63,7 +63,7 @@ constructor(private activatedRoute: ActivatedRoute,
     FechaNacimiento: new FormControl('', [ Validators.required,
                                             Validators.pattern(/^(((0)[1-9])|((1)[0-2]))(\/)(((0)[1-9])|[1-2][0-9]|(3)[0-1])(\/)\d{4}$/)
                                           ] ),
-    Nacionalidad: new FormControl('Argentina', [ Validators.required ] ),
+    Nacionalidad: new FormControl( { value : 'Argentina', disabled: true }, [ Validators.required ] ),
     Domicilio: new FormControl('', [ Validators.required ] ),
     Localidad: new FormControl('', [ Validators.required ] ),
     Ciudad: new FormControl('', [ Validators.required ] ),
@@ -207,7 +207,6 @@ constructor(private activatedRoute: ActivatedRoute,
       this.formGroup.controls['DNI'].setValue('');
       this.formGroup.controls['CUIL'].setValue('');
       this.formGroup.controls['FechaNacimiento'].setValue('');
-      this.formGroup.controls['Nacionalidad'].setValue('Argentina');
       this.formGroup.controls['Domicilio'].setValue('');
       this.formGroup.controls['Localidad'].setValue('');
       this.formGroup.controls['Ciudad'].setValue('');

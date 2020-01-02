@@ -46,7 +46,7 @@
         </div>
         <label for="selectNacionalidad" class="col-2 col-form-label">Nacionalidad</label>
         <div class="col-4">
-            <select class="form-control" id="selectNacionalidad" placeholder="Seleccionar" disabled [ngClass]="{'border-danger': showError && formGroup.get('Nacionalidad').invalid}" formControlName="Nacionalidad">
+            <select class="form-control" id="selectNacionalidad" placeholder="Seleccionar" [ngClass]="{'border-danger': showError && formGroup.get('Nacionalidad').invalid}" formControlName="Nacionalidad">
                     <option disabled selected value="">Selecciona una opción</option>
                     <option *ngFor="let n of nacionalities" [ngValue]="n">{{ n }}</option>
             </select>
